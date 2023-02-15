@@ -31,6 +31,7 @@ RUN apk --update add --no-cache                              qt5-qtbase && \
     # Test build
     qbittorrent-nox -v && \
     # Make directories, and symlink them for quality of life
+RUN cp Q.conf qBittorrent.conf && \
     mkdir -p ~/.config/qBittorrent && \
     mkdir -p ~/.local/share/qBittorrent && \
     mkdir /downloads && \
@@ -39,6 +40,7 @@ RUN apk --update add --no-cache                              qt5-qtbase && \
     ln -s ~/.local/share/qBittorrent /data && \
     # Install container and entrypoint dependencies
     apk --update add --no-cache curl dumb-init tzdata
+
 
 VOLUME ["/config", "/data", "/downloads", "/incomplete"]
 
